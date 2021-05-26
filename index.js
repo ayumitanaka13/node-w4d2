@@ -4,7 +4,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 
 require("./models/user.model");
-
+require("./services/passport");
 const keys = require("./config/keys");
 
 const app = express();
@@ -23,7 +23,9 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => {
-    const PORT = process.env.port || 5000;
-    app.listen(PORT, () => console.log("Sever is running"));
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () =>
+      console.log(`Server has started running on port ${PORT}`)
+    );
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.error(err));
