@@ -1,0 +1,5 @@
+.env
+.DS_Store
+
+dev.js
+node_modules/
