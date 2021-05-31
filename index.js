@@ -12,8 +12,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey],
+  })
+);
+
 app.use(passport.initialize());
+app.use(passport.session());
+
 const authRoutes = require("./routes/auth.route");
+
 app.use("/api/auth", authRoutes);
 
 mongoose
